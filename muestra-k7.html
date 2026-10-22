@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sector 4 · Terminal de análisis</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0d0c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Serif:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lab.css">
+</head>
+<body data-result="ok">
+<div class="hazard"></div>
+
+<!-- 1 · EN ESPERA (igual en las dos páginas) -->
+<section class="screen" id="s-idle">
+  <span class="emblem"></span>
+  <p class="kicker">Laboratorio Sector 4 // Terminal de análisis</p>
+  <h1>Análisis<br>de mezcla</h1>
+  <p class="lead">Introducid la mezcla en la cámara de análisis y pulsad el botón para comprobar si el antídoto es válido.</p>
+  <button class="go" id="go" type="button">Analizar mezcla</button>
+</section>
+
+<!-- 2 · ANALIZANDO (igual en las dos páginas) -->
+<section class="screen" id="s-scan" hidden>
+  <div class="scanbox">
+    <span class="emblem"></span>
+    <p class="kicker" style="text-align:center">Protocolo de emergencia // Nivel 4</p>
+    <h1>Analizando…</h1>
+    <ul class="log" id="log"></ul>
+    <div class="meter-head" id="meter-head"><span>Síntesis del antídoto</span><span id="pct">0 %</span></div>
+    <div class="meter" id="meter"><i id="bar"></i></div>
+  </div>
+</section>
+
+<!-- 3 · RESULTADO: MEZCLA CORRECTA (edita aquí los textos) -->
+<section class="screen res ok" id="s-result" hidden>
+  <span class="emblem"></span>
+  <p class="kicker">Análisis completado // Compuesto estable</p>
+  <h1>Antídoto<br>sintetizado</h1>
+  <p class="status">✔ Mezcla correcta · Estabilidad 100 %</p>
+  <p class="action">Buen trabajo, agentes. <b>El antídoto funciona.</b><br>Activad ahora el protocolo de descontaminación.</p>
+  <button class="again" id="again" type="button">Nuevo análisis</button>
+</section>
+
+<div class="hazard"></div>
+<script src="lab.js"></script>
+</body>
+</html>

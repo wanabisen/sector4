@@ -1,0 +1,84 @@
+/* SECTOR 4 · Terminal de análisis — estilos compartidos */
+:root{--bg:#0b0d0c;--panel:#131614;--line:#2a302c;--lime:#c5f018;--txt:#e9ece8;--mute:#9aa39d;--red:#ff3b3b;--yellow:#f2cf00}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);background-image:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(197,240,24,.12),transparent 70%);color:var(--txt);font:16px/1.5 'Noto Serif',Georgia,serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;transition:background-color .4s}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;background:repeating-linear-gradient(transparent 0 3px,rgba(0,0,0,.2) 3px 4px)}
+[hidden]{display:none!important}
+
+.hazard{height:12px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 16px,#111 16px 32px);transition:background .3s}
+body.alarm .hazard{background:repeating-linear-gradient(-45deg,var(--red) 0 16px,#111 16px 32px)}
+
+.screen{min-height:calc(100vh - 24px);min-height:calc(100dvh - 24px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px 16px}
+.kicker{font:700 clamp(12px,1.7vw,15px)/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);margin:0}
+h1{font-weight:900;font-size:clamp(36px,8.5vw,88px);line-height:.98;text-transform:uppercase;margin:14px 0 12px;letter-spacing:-.01em}
+.lead{color:var(--mute);max-width:540px;margin:0 auto 32px;font-size:clamp(15px,2.1vw,20px)}
+
+/* Emblema */
+.emblem{display:block;width:clamp(110px,22vw,190px);aspect-ratio:1;color:var(--lime);margin:0 auto 18px;filter:drop-shadow(0 0 18px rgba(197,240,24,.45))}
+.emblem svg{width:100%;height:100%;display:block}
+.emblem .spin{transform-origin:100px 100px;animation:spin 40s linear infinite}
+.scanning .emblem .spin{animation-duration:2.5s}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Botones */
+.go{font:700 clamp(16px,2.4vw,22px) 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#0b0d0c;background:var(--lime);border:0;padding:22px 38px;cursor:pointer;animation:glow 2s ease-in-out infinite;touch-action:manipulation}
+.go:active{transform:scale(.98)}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(197,240,24,.0),0 0 24px rgba(197,240,24,.35)}50%{box-shadow:0 0 0 10px rgba(197,240,24,.12),0 0 40px rgba(197,240,24,.6)}}
+.again{margin-top:34px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;background:transparent;color:#6b746d;border:1px solid #2f3631;padding:10px 16px;cursor:pointer}
+
+/* Análisis */
+.scanbox{width:min(600px,100%);text-align:left}
+.scanbox h1{font-size:clamp(28px,6vw,56px);text-align:center}
+.log{list-style:none;margin:18px 0 22px;padding:0;font:clamp(13px,1.9vw,16px)/1.5 'JetBrains Mono',monospace;min-height:11.5em}
+.log li{display:flex;gap:10px;align-items:baseline;animation:in .25s ease-out both;padding:2px 0}
+.log li span{flex:1;overflow:hidden;white-space:nowrap}
+.log li span::after{content:" ................................................................................";color:#3b433d}
+.log li b{color:var(--lime);font-weight:700;min-width:6ch;text-align:right}
+.log li.err{color:var(--red)}
+.log li.err span::after{content:""}
+.log li b.bad{color:var(--red)}
+@keyframes in{from{opacity:0;transform:translateX(-8px)}}
+.meter-head{display:flex;justify-content:space-between;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.meter-head #pct{color:var(--lime);font-size:15px}
+.meter{height:24px;border:1.5px solid var(--lime);padding:3px;transition:border-color .2s}
+.meter i{display:block;height:100%;width:0;background:repeating-linear-gradient(-45deg,var(--lime) 0 10px,#9cc10e 10px 20px);background-size:28px 28px;animation:stripes .6s linear infinite}
+@keyframes stripes{to{background-position:28px 0}}
+.meter.bad{border-color:var(--red)}
+.meter.bad i{background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#a51d1d 10px 20px);background-size:28px 28px;animation:stripes .15s linear infinite,jitter .12s steps(2) infinite}
+.meter-head.bad #pct{color:var(--red)}
+@keyframes jitter{50%{transform:translateX(3px)}}
+
+/* Resultado */
+.res{--c:var(--lime)}
+.res .emblem{color:var(--c);width:clamp(130px,26vw,230px)}
+.res h1{color:var(--c);font-size:clamp(40px,10vw,110px)}
+.res .kicker{color:var(--c)}
+.status{display:inline-block;font:700 clamp(13px,2vw,17px) 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--c);color:var(--c);padding:8px 14px;margin:0 0 22px}
+.action{max-width:620px;font-size:clamp(17px,2.6vw,24px);margin:0 auto;border-top:1px solid var(--line);padding-top:18px}
+.action b{color:var(--c)}
+
+.res.ok .emblem{filter:drop-shadow(0 0 30px rgba(197,240,24,.7));animation:pop .7s cubic-bezier(.2,1.6,.4,1) both}
+.res.ok h1{text-shadow:0 0 30px rgba(197,240,24,.45);animation:pop .7s .1s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.6)}}
+
+.res.ko{--c:var(--red)}
+.res.ko .emblem{filter:drop-shadow(0 0 30px rgba(255,59,59,.7))}
+.res.ko .emblem .spin{animation-duration:1.2s;animation-direction:reverse}
+.res.ko h1{animation:glitch 2.4s infinite}
+@keyframes glitch{
+  0%,86%,100%{transform:none;text-shadow:0 0 26px rgba(255,59,59,.5)}
+  88%{transform:translate(-4px,1px) skewX(-6deg);text-shadow:4px 0 #c5f018,-4px 0 #00e1ff}
+  90%{transform:translate(4px,-2px);text-shadow:-5px 0 #c5f018,5px 0 #00e1ff}
+  92%{transform:translate(-2px,0) skewX(4deg);text-shadow:3px 0 #c5f018,-3px 0 #00e1ff}
+}
+
+/* Alarma (máx. 1 destello por segundo) */
+body.alarm::before{content:"";position:fixed;inset:0;background:var(--red);pointer-events:none;z-index:4;opacity:0;animation:flash 1s ease-in-out 5}
+@keyframes flash{50%{opacity:.3}}
+.shake{animation:shake .35s linear 4}
+@keyframes shake{25%{transform:translate(-6px,2px)}50%{transform:translate(5px,-3px)}75%{transform:translate(-3px,-1px)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before{animation:none!important}
+}
