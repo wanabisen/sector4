@@ -18,7 +18,7 @@ Los nombres son neutros a propósito: así nadie adivina el resultado mirando el
    - Incorrecta: al 73 % la barra se pone roja y tiembla, y salen sirena, destellos rojos (máximo uno por segundo), vibración en el móvil y "MEZCLA INESTABLE".
 4. **Nuevo análisis** (o la tecla R / Esc) vuelve al inicio para el siguiente grupo.
 
-Al pulsar el botón, la página se pone en pantalla completa y mantiene la pantalla encendida si el navegador lo permite.
+Al pulsar el botón, la página mantiene la pantalla encendida si el navegador lo permite (no pasa a pantalla completa).
 **Subid el volumen del móvil o la tablet**: el sonido se genera en la propia página, sin archivos.
 
 Para cambiar los textos del resultado, edita la sección `3 · RESULTADO` de cada página.
