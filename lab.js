@@ -69,7 +69,6 @@
   // ── Pantalla completa + pantalla siempre encendida (si el navegador lo permite) ──
   let wake = null;
   function kiosk() {
-    try { if (!document.fullscreenElement && document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {}); } catch (e) {}
     try { if (navigator.wakeLock && !wake) navigator.wakeLock.request("screen").then(w => { wake = w; w.addEventListener("release", () => wake = null); }).catch(() => {}); } catch (e) {}
   }
   document.addEventListener("visibilitychange", () => {
